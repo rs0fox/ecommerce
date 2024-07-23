@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_URL=mysql://user:password@mysql/ecommerce
+
+  mysql:
+    build: ./mysql
+    volumes:
+      - ./mysql/data:/var/lib/mysql
